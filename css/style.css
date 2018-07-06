@@ -1,0 +1,235 @@
+/* ----------------------------------------------
+------Reset
+---------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------------------------------------------
+------Main
+---------------------------------------------- */
+
+@font-face {
+  font-family: Asimov;
+  src: url('../fonts/vegur-regular.otf');
+}
+
+@font-face {
+  font-family: Asimov;
+  src: url('../fonts/vegur-bold.otf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: RozhaOne;
+  src: url('../fonts/RozhaOne-Regular.ttf');
+}
+
+body {
+  font-family: Asimov, sans-serif;
+  font-weight: bold;
+}
+
+[class$="wrapper"] {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 950px;
+  max-width: 338px; /*temp*/
+}
+
+/* ----------------------------------------------
+------Header
+---------------------------------------------- */
+
+.main-header {
+  margin-top: 64px;
+}
+.main-header__title {
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 1;
+  position: relative;
+}
+.main-header__title:after {
+  content:'';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 108px;
+  transform: translate(0, 50%);
+  height: 4px;
+  width: 93px;
+  background-color: blue; /* TODO:change!!! */
+
+}
+.main-header__social {
+  font-size: 0;
+  margin: 22px 0 30px 0;
+}
+.main-header__social-link {
+  display: inline-block;
+  height: 20px;
+  width: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 18px;
+  transform: scale(0.8);
+}
+.link-facebook {
+  background-image: url('../assets/fb_grey.svg');
+}
+.link-twitter {
+  background-image: url('../assets/twitter_grey.svg');
+}
+.link-insta {
+  background-image: url('../assets/insta_grey.svg');
+}
+
+/* ----------------------------------------------
+------Main Content
+---------------------------------------------- */
+
+.main-content {
+  text-align: justify;
+}
+.main-content__wrapper {
+
+}
+.main-content__strong {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 1.84;
+}
+.main-content__par {
+  font-size: 14px;
+  margin-top: 30px;
+  line-height: 1.8;
+}
+.main-content__art {
+  padding: 10px 25px 0 25px;
+}
+.main-content__art-title {
+  margin-bottom: 30px;
+  position: relative;
+}
+.main-content__art-title:after {
+  content:'';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translate(0, 11px);
+  height: 2px;
+  width: 48px;
+  background-color: blue;
+}
+.main-content__art-par {
+  font-family: RozhaOne, sans-serif;
+  font-weight: normal;
+  line-height: 1.1;
+}
+.main-content__image {
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+}
+.main-content__breaker {
+  margin: 13px 0 7px 0;
+  border: none;
+  border-bottom: 2px solid gray;
+}
+.main-content__note {
+  font-family: RozhaOne, sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-left: 36px;
+  position: relative;
+}
+.main-content__note:after {
+  content:'';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 12px;
+  width: 12px;
+  background-image: url('../assets/Triangle.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translate(-35px, 2px) rotate(90deg);
+}
+.main-content__note-list {
+
+}
+.main-content__note-list-el {
+  margin-bottom: 10px;
+}
+
+/* ----------------------------------------------
+Booking
+---------------------------------------------- */
+
+.booking {
+  background-image: url('../assets/booking_bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.booking__title {
+
+}
+.booking__wrapper {
+  
+}
+.booking__calendar {
+  max-width: 460px;
+}
+.booking__calendar-arrow-left {
+  
+}
+.booking__calendar-arrow-right {
+  
+}
+
+/* ----------------------------------------------
+Calendar styles
+---------------------------------------------- */
+
+.booking__calendar {
+  width:230px;
+  height:220px;
+  border: solid 1px green;
+  position:relative;
+}
+#data_chooser {
+  width:170px;
+  height:25px;
+  border:solid 1px green;
+  margin-top:2px;
+  margin-left:24px;
+  text-align:center;
+}
+.arrow {
+  position: absolute;
+  top:2px;
+}
+.left {
+  left:2px;
+}
+.right {
+  right:2px;
+}
+.arrow a {
+  text-decoration: none;
+}
+#calendar_display table {
+  table-layout: fixed;
+  width:220px;
+  height:180px;
+  margin-left:6px;
+}
+#calendar_display table td{
+  width: calc(1/7 * 100 * 1%);
+}
