@@ -9,17 +9,17 @@
 </head>
 <body>
   <header class="main-header">
-    <div class="main-header__wrapper">
+    <div class="width-container">
       <h1 class="main-header__title">About</h1>
       <div class="main-header__social">
-        <a class="main-header__social-link link-facebook" href="#"></a>
-        <a class="main-header__social-link link-twitter" href="#"></a>
-        <a class="main-header__social-link link-insta" href="#"></a>
+        <a class="main-header__link link-facebook" href="#"></a>
+        <a class="main-header__link link-twitter" href="#"></a>
+        <a class="main-header__link link-insta" href="#"></a>
       </div>
     </div>
   </header>
   <section class="main-content">
-    <div class="main-content__wrapper">
+    <div class="width-container">
       <p class="main-content__strong">
         What if a storm hits Hilton Head Island before you get ready to go on vacation? The answer is simple… stay home! But before you unpack, just check to make sure whether the Island has been affected. We have had many tropical storm warnings over the years, but unlike Florida we’ve been extremely fortunate. In our opinion, the best offense is defense.
       </p>
@@ -30,10 +30,10 @@
         In 2006, the National Hurricane Center is predicting a hurricane season with 8 to 10 named storms. As residents of Hilton Head Island, we always prepare the best we can. We are constantly planning ahead. You should do the same; you need to plan ahead. While we cannot forecast the weather day in and day out, the Internet can provide help in dealing with the variety of weather conditions vacationers may face that could take a toll on Hilton Head Island.
       </p>
       <article class="main-content__art">
-        <h3 class="main-content__art-title">
+        <h3 class="art__title">
           norway.
         </h3>
-        <p class="main-content__art-par">
+        <p class="art__par">
           We recommend purchasing travel insurance. Even the most basic travel insurance will provide some compensation if flights are canceled or the island is closed down due to a hurricane.
         </p>
       </article>
@@ -49,53 +49,120 @@
       </p>
       <hr class="main-content__breaker"/>
       <aside class="main-content__note">
-        <ol class="main-content__note-list">
-          <li class="main-content__note-list-el">With this type of plan, your travel</li>
-          <li class="main-content__note-list-el">On Hilton Head Island there are a lot of different vacation companies</li>
+        <ol class="main-content__list">
+          <li class="main-content__list-el">With this type of plan, your travel</li>
+          <li class="main-content__list-el">On Hilton Head Island there are a lot of different vacation companies</li>
         </ol>
       </aside>
     </div>
   </section>
   <section class="booking">
-    <div class="booking__wrapper">
+    <div class="width-container flex-container">
       <h2 class="booking__title">
-        Booking
+        Booking <div class="booking__title-line"></div>
       </h2>
       <div class="booking__calendar">
-  			<button class="booking__calendar-arrow-left" id="prevMonth">&lt;</button>
-  			<button class="booking__calendar-arrow-right" id="nextMonth">&gt;</button>
-  			<div id="data_chooser"></div>
+  			<div class="booking__calendar-date">
+          <button class="booking__calendar-arrow-left" id="prevMonth">&lt;</button>
+          <span class="booking__calendar-month" id="data_chooser"></span>
+          <button class="booking__calendar-arrow-right" id="nextMonth">&gt;</button>
+        </div>
   			<div id="calendar_display">
-  				<table>
+  				<table class="booking__table">
   					<thead>
-  						<tr><td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td></tr>
+  						<tr>
+                <td class="col"><div class="table-content">S</div></td>
+                <td class="col"><div class="table-content">M</div></td>
+                <td class="col"><div class="table-content">T</div></td>
+                <td class="col"><div class="table-content">W</div></td>
+                <td class="col"><div class="table-content">T</div></td>
+                <td class="col"><div class="table-content">F</div></td>
+                <td class="col"><div class="table-content">S</div></td>
+              </tr>
   					</thead>
   					<tbody>
-  						<tr class="r0"><td class="col0"><td class="col1"><td class="col2"><td class="col3"><td class="col4"><td class="col5"><td class="col6"></td></tr>
-  						<tr class="r1"><td class="col0"><td class="col1"><td class="col2"><td class="col3"><td class="col4"><td class="col5"><td class="col6"></td></tr>
-  						<tr class="r2"><td class="col0"><td class="col1"><td class="col2"><td class="col3"><td class="col4"><td class="col5"><td class="col6"></td></tr>
-  						<tr class="r3"><td class="col0"><td class="col1"><td class="col2"><td class="col3"><td class="col4"><td class="col5"><td class="col6"></td></tr>
-  						<tr class="r4"><td class="col0"><td class="col1"><td class="col2"><td class="col3"><td class="col4"><td class="col5"><td class="col6"></td></tr>
-  						<tr class="r5"><td class="col0"><td class="col1"><td class="col2"><td class="col3"><td class="col4"><td class="col5"><td class="col6"></td></tr>
+  						<tr class="r0">
+                <td class="col0"><div class="table-content-input"></div></td>
+                <td class="col1"><div class="table-content-input"></div></td>
+                <td class="col2"><div class="table-content-input"></div></td>
+                <td class="col3"><div class="table-content-input"></div></td>
+                <td class="col4"><div class="table-content-input"></div></td>
+                <td class="col5"><div class="table-content-input"></div></td>
+                <td class="col6"><div class="table-content-input"></div></td>
+                </tr>
+  						<tr class="r1">
+                <td class="col0"><div class="table-content-input"></div></td>
+                <td class="col1"><div class="table-content-input"></div></td>
+                <td class="col2"><div class="table-content-input"></div></td>
+                <td class="col3"><div class="table-content-input"></div></td>
+                <td class="col4"><div class="table-content-input"></div></td>
+                <td class="col5"><div class="table-content-input"></div></td>
+                <td class="col6"><div class="table-content-input"></div></td>
+              </tr>
+  						<tr class="r2">
+                <td class="col0"><div class="table-content-input"></div></td>
+                <td class="col1"><div class="table-content-input"></div></td>
+                <td class="col2"><div class="table-content-input"></div></td>
+                <td class="col3"><div class="table-content-input"></div></td>
+                <td class="col4"><div class="table-content-input"></div></td>
+                <td class="col5"><div class="table-content-input"></div></td>
+                <td class="col6"><div class="table-content-input"></div></td>
+              </tr>
+  						<tr class="r3">
+                <td class="col0"><div class="table-content-input"></div></td>
+                <td class="col1"><div class="table-content-input"></div></td>
+                <td class="col2"><div class="table-content-input"></div></td>
+                <td class="col3"><div class="table-content-input"></div></td>
+                <td class="col4"><div class="table-content-input"></div></td>
+                <td class="col5"><div class="table-content-input"></div></td>
+                <td class="col6"><div class="table-content-input"></div></td>
+              </tr>
+  						<tr class="r4">
+                <td class="col0"><div class="table-content-input"></div></td>
+                <td class="col1"><div class="table-content-input"></div></td>
+                <td class="col2"><div class="table-content-input"></div></td>
+                <td class="col3"><div class="table-content-input"></div></td>
+                <td class="col4"><div class="table-content-input"></div></td>
+                <td class="col5"><div class="table-content-input"></div></td>
+                <td class="col6"><div class="table-content-input"></div></td>
+              </tr>
+  						<tr class="r5">
+                <td class="col0"><div class="table-content-input"></div></td>
+                <td class="col1"><div class="table-content-input"></div></td>
+                <td class="col2"><div class="table-content-input"></div></td>
+                <td class="col3"><div class="table-content-input"></div></td>
+                <td class="col4"><div class="table-content-input"></div></td>
+                <td class="col5"><div class="table-content-input"></div></td>
+                <td class="col6"><div class="table-content-input"></div></td>
+              </tr>
   					</tbody>
   				</table>
   			</div>
       </div>
       <form action="submit" class="booking__form">
-        <label for="email">Your email:</label>
-        <input type="email" name="email" id="">
-        <label for="city">City:</label>
-        <select name="city" id="">
-          <option value="">opt</option>
-          <option value="">opt</option>
-          <option value="">opt</option>
-        </select>
-        <label for="hotel">Hotel:</label>
-        <select name="hotel" id="">
-          <option value="">opt</option>
-          <option value="">opt</option>
-          <option value="">opt</option>
-        </select>
+        <label for="email" class="visuallyhidden">Your email:</label>
+        <input type="email" name="email" class="booking__input" id="">
+        <div class="booking__input">
+          <span class="booking__input-val" id="js-booking-city-shown">asdasda</span>
+          <label for="city" class="visuallyhidden">City:</label>
+          <select name="city" class="booking__select" id="js-booking-city-select">
+            <option value="">opt1</option>
+            <option value="">opt2</option>
+            <option value="">opt3</option>
+          </select>
+          <div class="input--arrow"></div>
+        </div>
+        <div class="booking__input">
+          <span class="booking__input-val" id="js-booking-hotel-shown">asdasda</span>
+          <label for="hotel" class="visuallyhidden">Hotel:</label>
+          <select name="hotel" class="booking__select" id="js-booking-hotel-select">
+            <option value="">optHot1</option>
+            <option value="">optHot2</option>
+            <option value="">optHot3</option>
+          </select>
+          <div class="input--arrow"></div>
+        </div>
+        <button type="submit" class="submit-btn">BOOK</button>
       </form>
     </div>
   </section>

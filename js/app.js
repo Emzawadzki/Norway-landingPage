@@ -1,8 +1,9 @@
 $(function() {
-  console.log('works');
-  
-
   // Calendar function
+  var actualDate = new Date();
+  var actualYear = actualDate.getFullYear();
+  var actualMonth = actualDate.getMonth() + 1;
+  var actualDay = actualDate.getDate();
   function generateCalendar(d) {
     var days = howManyDays(d);
     var shift = getDayFirstDate(d);
@@ -10,12 +11,24 @@ $(function() {
     for(var i=0; i<days;i++) {
       var posi_row = Math.floor((i+shift)/7);
       var posi_col = Math.floor((i+shift)%7);
-      $('#calendar_display .r'+posi_row).children('.col'+posi_col).html(i+1);
+      var $dayCell = $('#calendar_display .r'+posi_row).children('.col'+posi_col).children('div');
+      $dayCell.text(i+1);
+      // 'check' actual day on calendar
+      if( d.getMonth() + 1 === actualMonth && actualDay === i + 1 && d.getFullYear() === actualYear ) {
+        $dayCell.addClass('actual--date');
+      } /* 'gray' passed days on calendar */ 
+        else if  (
+          d.getFullYear() < actualYear ||
+          (d.getFullYear() === actualYear && d.getMonth() + 1 < actualMonth) ||
+          (d.getFullYear() === actualYear && d.getMonth() + 1 === actualMonth && i+1 < actualDay)
+        ) {
+        $dayCell.addClass('passed--date');
+      }
     }
   }
   function clear(){
-    $('#calendar_display tbody td').each(function(){
-      $(this).html('');
+    $('.table-content-input').each(function(){
+      $(this).html('').removeClass('actual--date passed--date');
     })
   }
   function getDayFirstDate(d) {
@@ -26,9 +39,6 @@ $(function() {
     tempd.setHours(0);
     tempd.setMinutes(0);
     tempd.setSeconds(0);
-    // var timeSince1970 = tempd.getTime();
-    // var daysSince1970 = Math.floor(timeSince1970/(1000*60*60*24));
-    // return (daysSince1970+4)%7;
     return tempd.getDay();
   }
   function howManyDays(d) {
@@ -74,22 +84,31 @@ $(function() {
   }
   $(function(){
     var d = new Date();
-    var monthNames = ["January", "February", "March", "April", "May", "June",
+    var monthNames = [null, "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
     $('#data_chooser').html(monthNames[d.getMonth()+1]);
     generateCalendar(d);
     $('#prevMonth').click(function() {
       updateDate(d, 0);
-      $('#data_chooser').html(monthNames[d.getMonth()]);
+      $('#data_chooser').html(monthNames[d.getMonth()+1]);
       generateCalendar(d);
       return false;
     });
     $('#nextMonth').click(function() {
       updateDate(d, 1);
-      $('#data_chooser').html(monthNames[d.getMonth()]);
+      $('#data_chooser').html(monthNames[d.getMonth()+1]);
       generateCalendar(d);
       return false;
     });
   });
+
+  // Booking select scr
+  var setSelectedValue = function() {
+    var selectedText = $(this).find(':selected').text();
+    $(this).siblings('.booking__input-val').text(selectedText);
+  }
+
+  $('.booking__select').each(setSelectedValue);
+  $('.booking__select').on('change', setSelectedValue);
 })
 
