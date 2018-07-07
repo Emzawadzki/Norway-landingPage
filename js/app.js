@@ -133,6 +133,7 @@ $(function() {
   // Load cities from DB and set them as options
   var $citySelectEl = $('#js-booking-city-select');
   var $hotelSelectEl = $('#js-booking-hotel-select');
+  var $emailInputEl = $('#js-booking-email');
 
   (function initSelectOptFromDb() {
     var cityList = dataBase["cities"];
@@ -163,6 +164,41 @@ $(function() {
     setCityHotels(e.target.value);
   });
   $hotelSelectEl.on('change', setSelectedValue);
+
+  // Email validation
+  function ValidateEmail(){
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($emailInputEl.val())){
+      return (true)
+    }
+    return (false)
+  }
+
+
+  // Booking form validation
+  var $bookingForm = $('#js-booking-form');
+  $bookingForm.on('submit', function(e) {
+    e.preventDefault();
+    if(!ValidateEmail()) {
+      alert('Niepoprawny e-mail!')
+      return false;
+    }
+    ;
+    var loggedOutput = {
+      "date": {
+        "day": chosenDay,
+        "month": chosenMonth,
+        "year": chosenYear
+      },
+      "hotel": {
+        "city": $citySelectEl.val(),
+        "name": $hotelSelectEl.val()
+      },
+      "contact": {
+        "email": $emailInputEl.val()
+      } 
+    };
+    console.log(loggedOutput);
+  })
 
 });
 

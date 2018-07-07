@@ -230,7 +230,6 @@ Booking
   color: #fff;
   width: 100%;
   max-width: 460px;
-  border: solid 1px green;
   background: inherit;
   position: relative;
   z-index: 2;
@@ -251,7 +250,6 @@ Booking
 }
 .booking__calendar-date {
   font-size: 22px;
-  border:solid 1px green;
   text-align:center;
   margin: 30px 0;
 }
@@ -273,7 +271,6 @@ Booking
 }
 [class^='col'] {
   position: relative;
-  border: 1px solid red;
 }
 [class^='col']:after {
   content: '';
@@ -290,19 +287,42 @@ Booking
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.table-content-input {
   cursor: pointer;
 }
-.chosen--date {
-  background: red;
+[class$=date] {
   cursor: initial;
+}
+.chosen--date {
+  z-index: 1;
+}
+.chosen--date:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 60%;
+  width: 60%;
+  border-radius: 50%;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background: #348DB2;
+  z-index: -1;
 }
 .passed--date {
-  background: gray;
-  cursor: initial;
+  color: gray;
 }
-.forbidden--date {
-  background: indigo;
-  cursor: initial;
+.forbidden--date:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  top: 25%;
+  right: 25%;
+  background: #348DB2;
 }
 
 /* --- Form --- */
