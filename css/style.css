@@ -64,13 +64,7 @@ body {
   box-shadow: 0px 23px 74px -13px rgba(39, 39, 39, 0.507);
 }
 
-.actual--date {
-  background: red;
-}
 
-.passed--date {
-  background: gray;
-}
 
 /* ----------------------------------------------
 ------Header
@@ -296,6 +290,19 @@ Booking
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+.chosen--date {
+  background: red;
+  cursor: initial;
+}
+.passed--date {
+  background: gray;
+  cursor: initial;
+}
+.forbidden--date {
+  background: indigo;
+  cursor: initial;
 }
 
 /* --- Form --- */

@@ -2,33 +2,55 @@ $(function() {
   // Calendar function
   var actualDate = new Date();
   var actualYear = actualDate.getFullYear();
+  var chosenYear = actualYear;
   var actualMonth = actualDate.getMonth() + 1;
+  var chosenMonth = actualMonth;
   var actualDay = actualDate.getDate();
+  var chosenDay = actualDay;
   function generateCalendar(d) {
     var days = howManyDays(d);
     var shift = getDayFirstDate(d);
     clear();
-    for(var i=0; i<days;i++) {
-      var posi_row = Math.floor((i+shift)/7);
-      var posi_col = Math.floor((i+shift)%7);
-      var $dayCell = $('#calendar_display .r'+posi_row).children('.col'+posi_col).children('div');
-      $dayCell.text(i+1);
-      // 'check' actual day on calendar
-      if( d.getMonth() + 1 === actualMonth && actualDay === i + 1 && d.getFullYear() === actualYear ) {
-        $dayCell.addClass('actual--date');
-      } /* 'gray' passed days on calendar */ 
-        else if  (
-          d.getFullYear() < actualYear ||
-          (d.getFullYear() === actualYear && d.getMonth() + 1 < actualMonth) ||
-          (d.getFullYear() === actualYear && d.getMonth() + 1 === actualMonth && i+1 < actualDay)
-        ) {
-        $dayCell.addClass('passed--date');
+    daysLoop:
+      for(var i=0; i<days;i++) {
+        var posi_row = Math.floor((i+shift)/7);
+        var posi_col = Math.floor((i+shift)%7);
+        var $dayCell = $('#calendar_display .r'+posi_row).children('.col'+posi_col).children('div');
+        $dayCell.text(i+1);
+        $dayCell.off();
+        // check if forbidden
+        for(var j=0; j<dataBase["forbiddenDays"].length; j++) {
+          var forbiddenDay = dataBase["forbiddenDays"][j];
+          if( d.getFullYear() === forbiddenDay["year"] && d.getMonth() + 1 === forbiddenDay["month"] && i+1 === forbiddenDay["day"] ) {
+            $dayCell.addClass('forbidden--date');
+            continue daysLoop;
+          }
+        }
+        // 'check' chosen day on calendar
+        if( d.getMonth() + 1 === chosenMonth && chosenDay === i + 1 && d.getFullYear() === chosenYear ) {
+          $dayCell.addClass('chosen--date');
+          continue;
+        } /* 'gray' passed days on calendar */ 
+          else if (
+            d.getFullYear() < actualYear ||
+            (d.getFullYear() === actualYear && d.getMonth() + 1 < actualMonth) ||
+            (d.getFullYear() === actualYear && d.getMonth() + 1 === actualMonth && i+1 < actualDay)
+          ) {
+          $dayCell.addClass('passed--date');
+          continue;
+        } else {
+          $dayCell.on('click', function() {
+            chosenDay = parseInt($(this).text(), 10);
+            chosenMonth = d.getMonth() + 1;
+            chosenYear = d.getFullYear();
+            generateCalendar(d);
+          })
+        }
       }
-    }
   }
   function clear(){
     $('.table-content-input').each(function(){
-      $(this).html('').removeClass('actual--date passed--date');
+      $(this).html('').removeClass('chosen--date passed--date forbidden--date');
     })
   }
   function getDayFirstDate(d) {
@@ -102,13 +124,85 @@ $(function() {
     });
   });
 
-  // Booking select scr
-  var setSelectedValue = function() {
+  // Booking custom selector function
+  function setSelectedValue() {
     var selectedText = $(this).find(':selected').text();
     $(this).siblings('.booking__input-val').text(selectedText);
   }
+  
+  // Load cities from DB and set them as options
+  var $citySelectEl = $('#js-booking-city-select');
+  var $hotelSelectEl = $('#js-booking-hotel-select');
 
-  $('.booking__select').each(setSelectedValue);
-  $('.booking__select').on('change', setSelectedValue);
-})
+  (function initSelectOptFromDb() {
+    var cityList = dataBase["cities"];
+    for(var i = 0; i < cityList.length; i++) {
+      $citySelectEl.append(`<option value='${cityList[i]["name"]}'>${cityList[i]["name"]}</option>`);
+    };
+    $citySelectEl.val(`${cityList[0]["name"]}`);
+    setSelectedValue.call($citySelectEl);
+    setCityHotels(cityList[0]["name"]);
+    setSelectedValue.call($hotelSelectEl);
+  })();
 
+  // function setting city hotels as options
+  function setCityHotels(city) {
+    var hotelsList = dataBase["cities"].find(function(el) {
+      return el["name"] === city
+    })["hotels"];
+    $hotelSelectEl.empty();
+    for(var i = 0; i < hotelsList.length; i++) {
+      $hotelSelectEl.append(`<option value='${hotelsList[i]}'>${hotelsList[i]}</option>`);
+    }
+    $hotelSelectEl.val(hotelsList[0]);
+    setSelectedValue.call($hotelSelectEl);
+  }
+
+  $citySelectEl.on('change', function(e) {
+    setSelectedValue.call($(this));
+    setCityHotels(e.target.value);
+  });
+  $hotelSelectEl.on('change', setSelectedValue);
+
+});
+
+//json-type object, simulating data base
+const dataBase = {
+  "forbiddenDays": [
+    {
+      "year": 2018,
+      "month": 7,
+      "day": 14
+    },
+    {
+      "year": 2018,
+      "month": 8,
+      "day": 20
+    },
+    {
+      "year": 2018,
+      "month": 8,
+      "day": 22
+    },
+    {
+      "year": 2018,
+      "month": 7,
+      "day": 21
+    },
+    {
+      "year": 2018,
+      "month": 7,
+      "day": 25
+    }
+  ],
+  "cities": [
+    {
+      "name": "Warsaw",
+      "hotels": ["VicHotel", "NiceHotel", "CrazyHotel"]
+    },
+    {
+      "name": "Cracow",
+      "hotels": ["KindHotel", "RudeHotel", "FunnyHotel"]
+    }
+  ]
+}
